@@ -1,10 +1,14 @@
 <template>
   <section
     class="home"
-    :style="{ backgroundColor: bg }"
     @click.self="getContactBackgroundColor"
+    :style="{ backgroundColor: bg }"
   >
-    <div class="home__top">
+    <div
+      class="home__top"
+      @click.self="getContactBackgroundColor"
+      :style="{ backgroundColor: bg }"
+    >
       <div class="home__top__info">
         <div class="item" v-for="item in studio" :key="item.id">
           <span @click="item.active = !item.active">
@@ -104,15 +108,20 @@ const studio = ref([
   transition: all 0.6s cubic-bezier(0.97, 0.98, 0.65, 0.9);
   cursor: crosshair;
   &__top {
+    height: calc(100vh - 140px);
+    overflow: auto;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      appearance: none;
+      display: none;
+    }
+    transition: all 0.6s cubic-bezier(0.97, 0.98, 0.65, 0.9);
     @include flex(space-between, flex-start, row nowrap);
-    // height: 100%;
-    // scrollbar-width: none;
-    // &::-webkit-scrollbar {
-    //   appearance: none;
-    //   display: none;
-    // }
+    position: relative;
     @media screen and (max-width: 1150px) {
-      flex-direction: column-reverse;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
       gap: 1.5rem;
     }
     h4 {
@@ -127,6 +136,7 @@ const studio = ref([
       flex-shrink: 0;
       @media screen and (max-width: 1150px) {
         align-self: flex-end;
+        order: 1;
       }
       span {
         animation: blink 1s infinite;
@@ -136,6 +146,7 @@ const studio = ref([
       @include flex(flex-start, flex-start, row nowrap);
       @media screen and (max-width: 1150px) {
         flex-direction: column;
+        order: 2;
       }
       gap: 1rem;
       width: 100%;
@@ -178,10 +189,11 @@ const studio = ref([
     bottom: 0;
     right: 1rem;
     z-index: 2;
+    width: 100%;
     @media screen and (max-width: 1150px) {
-      right: 100%;
       left: 1rem;
     }
+    transition: all 0.6s cubic-bezier(0.97, 0.98, 0.65, 0.9);
     cursor: text;
     h1 {
       font-family: Binaria, "sans-serif";
@@ -195,6 +207,7 @@ const studio = ref([
       @include respondMax(tablet) {
         font-size: Max(68px, 6rem);
         line-height: Max(32px, 6rem);
+        text-align: left;
       }
     }
   }
