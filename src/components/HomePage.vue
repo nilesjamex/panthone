@@ -11,12 +11,12 @@
     >
       <div class="home__top__info">
         <div class="item" v-for="item in studio" :key="item.id">
-          <span @click="item.active = !item.active">
+          <span @click="handleCollapse(item.id)">
             {{ item.title }}
             <img :src="item.img" alt="" v-show="item.active" />
             <img :src="item.img2" alt="" v-show="!item.active" />
           </span>
-          <div class="item__collapsible" v-show="item.active">
+          <div class="item__collapsible" v-show="id === item.id">
             <p>
               {{ item.content }}
             </p>
@@ -37,6 +37,7 @@
 import { ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
 
+const id = ref();
 const time = ref<unknown>();
 const minute = ref<unknown>();
 const timeZone = ref<any>();
@@ -81,7 +82,7 @@ const studio = ref([
   },
   {
     title: "Works",
-    id: 1,
+    id: 2,
     img: require("@/assets/svg/minus.svg"),
     img2: require("@/assets/svg/add.svg"),
     active: true,
@@ -89,7 +90,7 @@ const studio = ref([
   },
   {
     title: "Contact",
-    id: 1,
+    id: 3,
     img: require("@/assets/svg/minus.svg"),
     img2: require("@/assets/svg/add.svg"),
     active: true,
@@ -97,6 +98,15 @@ const studio = ref([
     content2: "+234 816 994 5591",
   },
 ]);
+
+// handle collapsible
+const handleCollapse = (index: any) => {
+  if (id.value === index) {
+    id.value = null;
+  } else {
+    id.value = index;
+  }
+};
 </script>
 
 <style scoped lang="scss">
@@ -199,8 +209,8 @@ const studio = ref([
       font-family: Binaria, "sans-serif";
       font-style: normal;
       font-weight: 400;
-      font-size: Max(48px, 11.688rem);
-      line-height: Max(11.688rem, 32px);
+      font-size: Max(48px, 8rem);
+      line-height: Max(8rem, 32px);
       text-align: right;
       letter-spacing: -0.05em;
       color: $text;
