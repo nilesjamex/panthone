@@ -60,25 +60,9 @@ const getContactBackgroundColor = () => {
   ];
   let randomColor = colors[Math.floor(Math.random() * colors.length)];
   bg.value = randomColor;
-  // return `background-color: ${randomColor}`;
 };
-// const changeColor = () => {
-
-// };
-// computed(() => {
-
-// });
 
 // array of collapsible content
-type content = {
-  title: string;
-  id: number;
-  img: any;
-  img2: any;
-  active: boolean;
-  content: string;
-  content2: string;
-};
 const studio = ref([
   {
     title: "Studio",
@@ -114,7 +98,7 @@ const studio = ref([
 <style scoped lang="scss">
 .home {
   height: 100vh;
-  // background-color: $bg;
+  background-color: $bg;
   position: relative;
   padding: 1rem;
   transition: all 0.6s cubic-bezier(0.97, 0.98, 0.65, 0.9);
@@ -134,6 +118,7 @@ const studio = ref([
       text-align: right;
       letter-spacing: 0.02em;
       color: $text;
+      flex-shrink: 0;
       @media screen and (max-width: 1150px) {
         align-self: flex-end;
       }
@@ -186,6 +171,10 @@ const studio = ref([
     position: fixed;
     bottom: 0;
     right: 1rem;
+    @media screen and (max-width: 1150px) {
+      right: 100%;
+      left: 1rem;
+    }
     cursor: text;
     h1 {
       font-family: Binaria, "sans-serif";
@@ -197,7 +186,7 @@ const studio = ref([
       letter-spacing: -0.05em;
       color: $text;
       @include respondMax(tablet) {
-        font-size: Max(24px, 6rem);
+        font-size: Max(68px, 6rem);
         line-height: Max(32px, 6rem);
       }
     }
