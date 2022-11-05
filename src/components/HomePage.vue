@@ -24,7 +24,7 @@
       </div>
       <h4>{{ time }}<span>:</span>{{ minute }} {{ timeZone }}</h4>
     </div>
-    <div class="home__bottom">
+    <div class="home__bottom" :style="{ backgroundColor: bg }">
       <h1>PANTHONE STUDIO</h1>
     </div>
   </section>
@@ -105,6 +105,12 @@ const studio = ref([
   cursor: crosshair;
   &__top {
     @include flex(space-between, flex-start, row nowrap);
+    // height: 100%;
+    // scrollbar-width: none;
+    // &::-webkit-scrollbar {
+    //   appearance: none;
+    //   display: none;
+    // }
     @media screen and (max-width: 1150px) {
       flex-direction: column-reverse;
       gap: 1.5rem;
@@ -171,6 +177,7 @@ const studio = ref([
     position: fixed;
     bottom: 0;
     right: 1rem;
+    z-index: 2;
     @media screen and (max-width: 1150px) {
       right: 100%;
       left: 1rem;
