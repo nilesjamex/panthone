@@ -13,8 +13,8 @@
         <div class="item" v-for="item in studio" :key="item.id">
           <span @click="handleCollapse(item.id)">
             {{ item.title }}
-            <img :src="item.img" alt="" v-show="item.active" />
-            <img :src="item.img2" alt="" v-show="!item.active" />
+            <img :src="item.img" alt="" v-show="item.id === id" />
+            <img :src="item.img2" alt="" v-show="item.id != id" />
           </span>
           <div class="item__collapsible" v-show="id === item.id">
             <p>
