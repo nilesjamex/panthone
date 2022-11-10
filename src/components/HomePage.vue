@@ -17,16 +17,22 @@
             <img :src="item.img2" alt="" v-show="item.id != id" />
           </span>
           <div class="item__collapsible" v-show="id === item.id">
-            <p>
+            <p v-if="item.content">
               {{ item.content }}
             </p>
             <p v-if="item.content2">
               {{ item.content2 }}
             </p>
+            <a :href="`mailto:${item.link}`" v-if="item.link">{{
+              item.link
+            }}</a>
+            <a :href="`tel:${item.link2}`" v-if="item.link2">{{
+              item.link2
+            }}</a>
           </div>
         </div>
       </div>
-      <h4>{{ time }}<span>:</span>{{ minute }} {{ timeZone }}</h4>
+      <h4>{{ time }}<span>:</span>{{ minute }} Lagos/NG</h4>
     </div>
     <div class="home__bottom" :style="{ backgroundColor: bg }">
       <h1>PANTHONE STUDIO</h1>
@@ -94,8 +100,8 @@ const studio = ref([
     img: require("@/assets/svg/minus.svg"),
     img2: require("@/assets/svg/add.svg"),
     active: true,
-    content: "hello@panthone.design",
-    content2: "+234 816 994 5591",
+    link: "hello@panthone.design",
+    link2: "+2348169945591",
   },
 ]);
 
@@ -178,18 +184,30 @@ const handleCollapse = (index: any) => {
           color: $black;
           cursor: pointer;
         }
-        &__collapsible {
+        &__collapsible :where(p, a) {
           margin-top: 1.5rem 0;
-          p {
-            font-family: Hk-Grotesk, "sans-serif";
-            font-style: normal;
-            font-weight: 400;
-            font-size: Max(0.875rem, 14px);
-            line-height: Max(24px, 1.5rem);
-            letter-spacing: 0.02em;
-            color: $black;
-            margin: 0.5rem 0;
-          }
+          font-family: Hk-Grotesk, "sans-serif";
+          font-style: normal;
+          font-weight: 400;
+          font-size: Max(0.875rem, 14px);
+          line-height: Max(24px, 1.5rem);
+          letter-spacing: 0.02em;
+          color: $black;
+          margin: 0.5rem 0;
+          display: block;
+        }
+        &__collapsible :is(a) {
+          text-decoration: underline;
+          // position: relative;
+          // &::after {
+          //   content: "";
+          //   position: absolute;
+          //   width: 50%;
+          //   height: 1px;
+          //   background-color: $black;
+          //   top: 80%;
+          //   left: 0;
+          // }
         }
       }
     }
